@@ -158,18 +158,33 @@ br + br {
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">//alert("dsd");
 
 //--hides the sugarcube UI
-//UIBar.destroy();
+UIBar.destroy();
+
+/* with help from reddit: 
+https://www.reddit.com/r/twinegames/comments/f4faud/autosave_not_working_on_android_app_built_using/fhs2wi1/
+*/
 
 // Autosaves every passage.
-Config.saves.autosave = true;
+Config.saves.autosave = true
 
-// Automatically loads the autosave.
-Config.saves.autoload = true;
+// Automatically loads the autosave unless restarting.
+Config.saves.autoload = function () {
+	if (State.metadata.has("Restarting")) {
+		State.metadata.clear("Restarting");
+		return false;
+	}
+	return true;
+};
 
 // Prevents saving when in the "Start" passage.
-/*Config.saves.isAllowed = function () {
-    return passage() !== "Start";
-};*/</script><tw-tag name="Bathroom" color="red"></tw-tag><tw-passagedata pid="1" name="Start" tags="" position="204,156" size="200,100">You really need to poop....
+Config.saves.isAllowed = function () {
+	return passage() !== "Start";
+};
+
+// Records that the game is restarting.
+$(document).on(':enginerestart', function (event) {
+	State.metadata.set("Restarting", true);
+});</script><tw-tag name="Bathroom" color="red"></tw-tag><tw-passagedata pid="1" name="Start" tags="" position="204,156" size="200,100">You really need to poop....
 
 &lt;&lt;if not $hasToiletpaper&gt;&gt;
 &lt;p&gt;&lt;em&gt;You see toilet paper.&lt;/em&gt;&lt;/p&gt;
