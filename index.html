@@ -157,9 +157,19 @@ br + br {
  display: none; 
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">//alert("dsd");
 
-UIBar.destroy();
+//--hides the sugarcube UI
+//UIBar.destroy();
 
-config.saves.autosave = true;</script><tw-tag name="Bathroom" color="red"></tw-tag><tw-passagedata pid="1" name="Start" tags="" position="204,156" size="200,100">You really need to poop....
+// Autosaves every passage.
+Config.saves.autosave = true;
+
+// Automatically loads the autosave.
+Config.saves.autoload = true;
+
+// Prevents saving when in the "Start" passage.
+/*Config.saves.isAllowed = function () {
+    return passage() !== "Start";
+};*/</script><tw-tag name="Bathroom" color="red"></tw-tag><tw-passagedata pid="1" name="Start" tags="" position="204,156" size="200,100">You really need to poop....
 
 &lt;&lt;if not $hasToiletpaper&gt;&gt;
 &lt;p&gt;&lt;em&gt;You see toilet paper.&lt;/em&gt;&lt;/p&gt;
@@ -180,14 +190,15 @@ GAME OVER
 [[Pull down trousers]]
 [[Poop now|Poop now]]</tw-passagedata><tw-passagedata pid="5" name="Poop now" tags="" position="689,489" size="100,100">&lt;p&gt;You have pooped in your pants.&lt;/p&gt;
 
-&lt;&lt;include &quot;Game over&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Pull down trousers" tags="" position="393,646" size="100,100">&lt;p&gt;You are in a cubicle with your trousers down&lt;/p&gt;
+&lt;&lt;include &quot;Game over&quot;&gt;&gt;
+</tw-passagedata><tw-passagedata pid="6" name="Pull down trousers" tags="" position="393,646" size="100,100">&lt;p&gt;You are in a cubicle with your trousers down&lt;/p&gt;
 
 [[Sit on toilet]]
 [[Pull down underpants]]
 [[Poop now]]</tw-passagedata><tw-passagedata pid="7" name="Sit on toilet" tags="" position="252,879" size="100,100">&lt;p&gt;You are sat on a toilet with your underpants still on&lt;/p&gt;
 
 [[Stand up|Enter cubicle]]
-[[Poop now|poop now toilet underpants]]</tw-passagedata><tw-passagedata pid="8" name="Pull down underpants" tags="" position="468,889" size="100,100">&lt;p&gt;You are standing in a cubicle with your underpants down.&lt;/p&gt;
+[[Poop now|poop now toilet underpants]]</tw-passagedata><tw-passagedata pid="8" name="Pull down underpants" tags="" position="483,887.3333333333334" size="100,100">&lt;p&gt;You are standing in a cubicle with your underpants down.&lt;/p&gt;
 
 [[Poop now]]
 [[Sit down on the toilet|sit on toilet pants down]]</tw-passagedata><tw-passagedata pid="9" name="poop now toilet underpants" tags="" position="80.33333333333333,872" size="100,100">&lt;p&gt;You have pooped into your underpants while sitting on the toilet&lt;/p&gt;
